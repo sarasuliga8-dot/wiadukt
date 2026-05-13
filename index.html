@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CUSTOMIZE: Change app title -->
+    <title>Wiadukt</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+
+        <!-- ======== HEADER ======== -->
+        <header id="header">
+            <!-- CUSTOMIZE: Change the displayed game title -->
+            <h1 id="app-title">Wiadukt</h1>
+            <nav id="tab-nav">
+                <!-- Tab buttons — data-view must match a view section id below -->
+                <button class="tab-btn active" data-view="view-home">Home</button>
+                <button class="tab-btn" data-view="view-game">Game</button>
+                <button class="tab-btn" data-view="view-stats">Stats</button>
+                <button class="tab-btn" data-view="view-settings">Settings</button>
+            </nav>
+        </header>
+
+        <!-- ======== HOME VIEW ======== -->
+        <main id="view-home" class="view">
+            <div id="home-header">
+                <p id="home-subtitle">What would you like to do?</p>
+            </div>
+            <div id="home-nav">
+                <button class="home-nav-card" data-view="view-game">
+                    <span class="home-nav-icon">🎮</span>
+                    <div>
+                        <span class="home-nav-label">Game</span>
+                        <span class="home-nav-desc">Draw sides and record scores</span>
+                    </div>
+                </button>
+                <button class="home-nav-card" data-view="view-stats">
+                    <span class="home-nav-icon">📊</span>
+                    <div>
+                        <span class="home-nav-label">Stats</span>
+                        <span class="home-nav-desc">View weekly, monthly and yearly scores</span>
+                    </div>
+                </button>
+                <button class="home-nav-card" data-view="view-settings">
+                    <span class="home-nav-icon">⚙️</span>
+                    <div>
+                        <span class="home-nav-label">Settings</span>
+                        <span class="home-nav-desc">Edit player names and side names</span>
+                    </div>
+                </button>
+            </div>
+        </main>
+        <!-- ======== END HOME VIEW ======== -->
+
+
+        <!-- ======== GAME VIEW ======== -->
+        <main id="view-game" class="view hidden">
+
+            <button id="btn-back-home" class="btn-back">&#8592; Home</button>
+
+            <!-- Round info bar -->
+            <div id="round-info">
+                <span>Round <strong id="round-number">1</strong></span>
+                <span id="round-date"></span>
+            </div>
+
+            <!-- === PHASE 1: DRAW SIDES === -->
+            <!-- Shown before sides have been assigned this round -->
+            <section id="phase-draw" class="phase">
+                <p id="drawer-prompt" class="drawer-prompt"></p>
+                <button id="btn-draw" class="btn-primary">Draw Sides</button>
+            </section>
+
+            <!-- === PHASE 2: ACTIVE (sides assigned) === -->
+            <!-- Shown once sides have been drawn -->
+            <section id="phase-active" class="phase hidden">
+
+                <!-- Player side assignment cards -->
+                <div id="sides-display">
+                    <div class="player-side-card">
+                        <div class="player-label" id="p0-name-display">Player 1</div>
+                        <div class="side-badge" id="p0-side-badge">—</div>
+                    </div>
+                    <div class="vs-divider">vs</div>
+                    <div class="player-side-card">
+                        <div class="player-label" id="p1-name-display">Player 2</div>
+                        <div class="side-badge" id="p1-side-badge">—</div>
+                    </div>
+                </div>
+
+                <!-- === SCORING SECTION === -->
+                <!-- CUSTOMIZE: Adjust button labels to match your point rules -->
+                <div id="scoring-section">
+                    <p class="scoring-label">When the train passes, record the result:</p>
+
+                    <div class="score-player-group">
+                        <div class="score-player-label">
+                            <span id="score-p0-name">Player 1</span> won:
+                        </div>
+                        <div class="score-btns">
+                            <button class="score-btn btn-full"
+                                    data-player="0" data-points="1">
+                                On Viaduct (+1 pt)
+                            </button>
+                            <button class="score-btn btn-half"
+                                    data-player="0" data-points="0.5">
+                                Near Viaduct (+0.5 pt)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="score-player-group">
+                        <div class="score-player-label">
+                            <span id="score-p1-name">Player 2</span> won:
+                        </div>
+                        <div class="score-btns">
+                            <button class="score-btn btn-full"
+                                    data-player="1" data-points="1">
+                                On Viaduct (+1 pt)
+                            </button>
+                            <button class="score-btn btn-half"
+                                    data-player="1" data-points="0.5">
+                                Near Viaduct (+0.5 pt)
+                            </button>
+                        </div>
+                    </div>
+
+                    <button id="btn-no-score" class="btn-secondary">
+                        No score this round
+                    </button>
+                </div>
+                <!-- === END SCORING SECTION === -->
+
+                <!-- Result banner (hidden until scored) -->
+                <div id="score-result" class="score-result hidden"></div>
+
+                <!-- Running totals (shown after scoring) -->
+                <div id="current-totals"></div>
+
+                <!-- Shown when user tries to navigate away before submitting a result -->
+                <div id="nav-blocked-msg" class="nav-blocked-msg hidden">
+                    Submit a result before leaving this page.
+                </div>
+
+                <!-- Manual round-end button -->
+                <button id="btn-new-round" class="btn-new-round">End of Game</button>
+
+            </section>
+            <!-- === END PHASE 2 === -->
+
+        </main>
+        <!-- ======== END GAME VIEW ======== -->
+
+
+        <!-- ======== STATS VIEW ======== -->
+        <main id="view-stats" class="view hidden">
+            <div id="stats-controls">
+                <button class="period-btn active" data-period="weekly">Weekly</button>
+                <button class="period-btn" data-period="monthly">Monthly</button>
+                <button class="period-btn" data-period="yearly">Yearly</button>
+            </div>
+            <!-- Populated dynamically by renderStats() -->
+            <div id="stats-display"></div>
+        </main>
+
+
+        <!-- ======== SETTINGS VIEW ======== -->
+        <main id="view-settings" class="view hidden">
+
+            <section class="settings-section">
+                <h2>Player Names</h2>
+                <div class="settings-field">
+                    <label for="input-p0-name">Player 1</label>
+                    <input type="text" id="input-p0-name" placeholder="Player 1">
+                </div>
+                <div class="settings-field">
+                    <label for="input-p1-name">Player 2</label>
+                    <input type="text" id="input-p1-name" placeholder="Player 2">
+                </div>
+            </section>
+
+            <section class="settings-section">
+                <h2>Player Colours</h2>
+                <div class="settings-field settings-color-field">
+                    <label for="input-color-0">Player 1 button colour</label>
+                    <input type="color" id="input-color-0">
+                </div>
+                <div class="settings-field settings-color-field">
+                    <label for="input-color-1">Player 2 button colour</label>
+                    <input type="color" id="input-color-1">
+                </div>
+            </section>
+
+            <!-- CUSTOMIZE: Rename the two sides (default: Left / Right) -->
+            <section class="settings-section">
+                <h2>Side Names</h2>
+                <div class="settings-field">
+                    <label for="input-side-0">Side A</label>
+                    <input type="text" id="input-side-0" placeholder="Left">
+                </div>
+                <div class="settings-field">
+                    <label for="input-side-1">Side B</label>
+                    <input type="text" id="input-side-1" placeholder="Right">
+                </div>
+            </section>
+
+            <div id="settings-actions">
+                <button id="btn-save-settings" class="btn-primary">Save Settings</button>
+                <span id="settings-saved-msg" class="success-msg hidden">Saved!</span>
+            </div>
+
+            <hr>
+
+            <div id="danger-zone">
+                <h2>Danger Zone</h2>
+                <p class="danger-desc">Permanently deletes all score history and resets the game.</p>
+                <button id="btn-reset-data" class="btn-danger">Reset All Data</button>
+            </div>
+
+        </main>
+        <!-- ======== END SETTINGS VIEW ======== -->
+
+    </div><!-- #app -->
+
+    <script src="script.js"></script>
+</body>
+</html>

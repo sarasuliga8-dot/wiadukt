@@ -1,0 +1,703 @@
+/* ============================================================
+   WIADUKT — STYLES
+   ============================================================ */
+
+/* === CUSTOMIZE BELOW: Design Tokens === */
+:root {
+    /* Colours */
+    --color-primary:      #1e2d40;
+    --color-accent:       #3b82f6;
+    --color-success:      #22c55e;
+    --color-warning:      #f59e0b;
+    --color-danger:       #ef4444;
+    --color-bg:           #f1f5f9;
+    --color-surface:      #ffffff;
+    --color-border:       #e2e8f0;
+    --color-text:         #1e293b;
+    --color-text-muted:   #64748b;
+
+    /* Spacing */
+    --space-xs:  4px;
+    --space-sm:  8px;
+    --space-md:  16px;
+    --space-lg:  24px;
+    --space-xl:  32px;
+
+    /* Typography */
+    --text-sm:   0.875rem;
+    --text-base: 1rem;
+    --text-lg:   1.125rem;
+    --text-xl:   1.375rem;
+    --text-2xl:  1.75rem;
+
+    /* Shape */
+    --radius:    8px;
+    --radius-lg: 14px;
+
+    /* Shadow */
+    --shadow:    0 1px 4px rgba(0,0,0,0.08);
+    --shadow-lg: 0 4px 20px rgba(0,0,0,0.10);
+}
+/* === END CUSTOMIZE: Design Tokens === */
+
+
+/* ============================================================
+   SECTION: RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    min-height: 100dvh;
+}
+
+
+/* ============================================================
+   SECTION: LAYOUT
+   ============================================================ */
+#app {
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ============================================================
+   SECTION: HEADER & TABS
+   ============================================================ */
+#header {
+    background: var(--color-primary);
+    color: #fff;
+    padding: var(--space-md) var(--space-md) var(--space-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+#app-title {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+#tab-nav {
+    display: flex;
+    gap: var(--space-xs);
+}
+
+.tab-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.65);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+}
+
+.tab-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+
+.tab-btn.active {
+    background: #fff;
+    color: var(--color-primary);
+    border-color: #fff;
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   SECTION: VIEWS
+   ============================================================ */
+.view {
+    flex: 1;
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+
+/* ============================================================
+   SECTION: HOME VIEW
+   ============================================================ */
+#home-header {
+    text-align: center;
+    padding: var(--space-sm) 0;
+}
+
+#home-subtitle {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+#home-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.home-nav-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    width: 100%;
+}
+
+.home-nav-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+    transform: translateY(-1px);
+}
+
+.home-nav-card:active {
+    transform: translateY(0);
+}
+
+.home-nav-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.home-nav-label {
+    display: block;
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--color-text);
+    line-height: 1.2;
+}
+
+.home-nav-desc {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-xs);
+    line-height: 1.4;
+}
+
+.home-nav-card > div {
+    flex: 1;
+}
+
+/* ============================================================
+   SECTION: BACK BUTTON
+   ============================================================ */
+.btn-back {
+    align-self: flex-start;
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.15s;
+}
+
+.btn-back:hover {
+    color: var(--color-text);
+}
+
+/* ============================================================
+   SECTION: ROUND INFO BAR
+   ============================================================ */
+#round-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-bg);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+}
+
+#round-info strong {
+    color: var(--color-text);
+    font-size: var(--text-lg);
+}
+
+
+/* ============================================================
+   SECTION: PHASES
+   ============================================================ */
+.phase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.drawer-prompt {
+    font-size: var(--text-lg);
+    text-align: center;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+
+/* ============================================================
+   SECTION: PLAYER SIDE CARDS
+   ============================================================ */
+#sides-display {
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-md);
+    width: 100%;
+}
+
+.player-side-card {
+    flex: 1;
+    background: var(--color-bg);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg) var(--space-md);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: center;
+}
+
+.player-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.side-badge {
+    font-size: var(--text-2xl);
+    font-weight: 800;
+    color: var(--color-primary);
+}
+
+.vs-divider {
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    align-self: center;
+    flex-shrink: 0;
+}
+
+
+/* ============================================================
+   SECTION: SCORING
+   ============================================================ */
+#scoring-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.scoring-label {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+}
+
+.score-player-group {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.score-player-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+.score-player-label span {
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+.score-btns {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+/* Score result banner */
+.score-result {
+    width: 100%;
+    padding: var(--space-md);
+    border-radius: var(--radius);
+    background: #dcfce7;
+    color: #15803d;
+    font-weight: 600;
+    text-align: center;
+    font-size: var(--text-base);
+    border: 1px solid #bbf7d0;
+}
+
+.score-result.no-score-result {
+    background: var(--color-bg);
+    color: var(--color-text-muted);
+    border-color: var(--color-border);
+}
+
+
+/* ============================================================
+   SECTION: RUNNING TOTALS
+   ============================================================ */
+#current-totals {
+    width: 100%;
+}
+
+.totals-card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.totals-title {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-name {
+    font-size: var(--text-sm);
+    color: var(--color-text);
+}
+
+.total-score {
+    font-size: var(--text-xl);
+    font-weight: 800;
+    color: var(--color-primary);
+}
+
+
+/* ============================================================
+   SECTION: BUTTONS
+   ============================================================ */
+
+/* Primary action button */
+.btn-primary {
+    background: var(--color-accent);
+    color: #fff;
+    border: none;
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    transition: opacity 0.15s, transform 0.1s;
+}
+
+.btn-primary:hover  { opacity: 0.88; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0); }
+
+/* Secondary / ghost button */
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.15s;
+}
+
+.btn-secondary:hover { background: var(--color-bg); }
+
+/* Danger button */
+.btn-danger {
+    background: var(--color-danger);
+    color: #fff;
+    border: none;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius);
+    font-size: var(--text-base);
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.btn-danger:hover { opacity: 0.85; }
+
+/* New Round button */
+.btn-new-round {
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    padding: var(--space-md);
+    border-radius: var(--radius);
+    font-size: var(--text-base);
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    letter-spacing: 0.04em;
+    transition: opacity 0.15s;
+}
+
+.btn-new-round:hover { opacity: 0.85; }
+
+/* Score action buttons */
+.score-btn {
+    flex: 1;
+    border: none;
+    padding: var(--space-sm) var(--space-xs);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.1s;
+    line-height: 1.3;
+}
+
+.score-btn:active { transform: scale(0.97); }
+.score-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* CUSTOMIZE: Change button colours to match your theme */
+.btn-full { background: var(--color-success); color: #fff; }
+.btn-half { background: var(--color-warning); color: #fff; }
+
+
+/* ============================================================
+   SECTION: STATS VIEW
+   ============================================================ */
+#stats-controls {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.period-btn {
+    flex: 1;
+    background: var(--color-bg);
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    padding: var(--space-sm);
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    transition: all 0.15s;
+}
+
+.period-btn.active {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+    font-weight: 700;
+}
+
+#stats-display {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.stat-row {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.stat-period {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+.stat-scores {
+    display: flex;
+    gap: var(--space-xl);
+    align-items: baseline;
+}
+
+.stat-player {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+.stat-player strong {
+    font-size: var(--text-xl);
+    font-weight: 800;
+    color: var(--color-primary);
+}
+
+.no-data {
+    text-align: center;
+    color: var(--color-text-muted);
+    padding: var(--space-xl) 0;
+    font-size: var(--text-sm);
+}
+
+
+/* ============================================================
+   SECTION: SETTINGS VIEW
+   ============================================================ */
+.settings-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.settings-section h2 {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+}
+
+.settings-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.settings-field label {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+.settings-field input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    font-size: var(--text-base);
+    color: var(--color-text);
+    background: var(--color-surface);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.settings-field input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+.settings-color-field input[type="color"] {
+    width: 100%;
+    height: 44px;
+    padding: 2px 4px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    cursor: pointer;
+}
+
+#settings-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.success-msg {
+    color: var(--color-success);
+    font-size: var(--text-sm);
+    font-weight: 700;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+}
+
+#danger-zone h2 {
+    font-size: var(--text-sm);
+    color: var(--color-danger);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+}
+
+.danger-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+}
+
+
+/* ============================================================
+   SECTION: NAV BLOCKED MESSAGE
+   ============================================================ */
+.nav-blocked-msg {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius);
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ============================================================
+   SECTION: UTILITIES
+   ============================================================ */
+.hidden {
+    display: none !important;
+}
+
+
+/* ============================================================
+   SECTION: RESPONSIVE
+   ============================================================ */
+@media (max-width: 480px) {
+    .view       { padding: var(--space-md); gap: var(--space-md); }
+    .score-btns { flex-direction: column; }
+}
