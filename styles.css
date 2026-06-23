@@ -2,9 +2,7 @@
    WIADUKT — STYLES
    ============================================================ */
 
-/* === CUSTOMIZE BELOW: Design Tokens === */
 :root {
-    /* Colours */
     --color-primary:      #1e2d40;
     --color-accent:       #3b82f6;
     --color-success:      #22c55e;
@@ -16,29 +14,24 @@
     --color-text:         #1e293b;
     --color-text-muted:   #64748b;
 
-    /* Spacing */
     --space-xs:  4px;
     --space-sm:  8px;
     --space-md:  16px;
     --space-lg:  24px;
     --space-xl:  32px;
 
-    /* Typography */
     --text-sm:   0.875rem;
     --text-base: 1rem;
     --text-lg:   1.125rem;
     --text-xl:   1.375rem;
     --text-2xl:  1.75rem;
 
-    /* Shape */
     --radius:    8px;
     --radius-lg: 14px;
 
-    /* Shadow */
     --shadow:    0 1px 4px rgba(0,0,0,0.08);
     --shadow-lg: 0 4px 20px rgba(0,0,0,0.10);
 }
-/* === END CUSTOMIZE: Design Tokens === */
 
 
 /* ============================================================
@@ -49,16 +42,7 @@
     margin: 0;
     padding: 0;
 }
-.title-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
 
-.logo {
-    width: 100px;
-    height: auto;
-}
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--color-bg);
@@ -82,55 +66,49 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
+
 /* ============================================================
-   SECTION: HEADER & TABS
+   SECTION: HEADER
    ============================================================ */
 #header {
     background: var(--color-primary);
     color: #fff;
-    padding: var(--space-md) var(--space-md) var(--space-sm);
+    padding: var(--space-xl) var(--space-md);
     position: sticky;
     top: 0;
     z-index: 100;
+}
+
+.title-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.logo {
+    width: 110px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.title-text {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: 2px;
 }
 
 #app-title {
-    font-size: var(--text-xl);
+    font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
-#tab-nav {
-    display: flex;
-    gap: var(--space-xs);
-}
-
-.tab-btn {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.25);
-    color: rgba(255,255,255,0.65);
-    padding: var(--space-xs) var(--space-md);
-    border-radius: var(--radius);
-    cursor: pointer;
+#app-tagline {
     font-size: var(--text-sm);
-    font-weight: 500;
-    transition: background 0.15s, color 0.15s;
-}
-
-.tab-btn:hover {
-    background: rgba(255,255,255,0.12);
-    color: #fff;
-}
-
-.tab-btn.active {
-    background: #fff;
-    color: var(--color-primary);
-    border-color: #fff;
-    font-weight: 700;
+    opacity: 0.6;
+    margin: 0;
+    letter-spacing: 0.02em;
 }
 
 
@@ -162,7 +140,8 @@ body {
     font-weight: 600;
 }
 
-#home-nav {
+#home-nav,
+#play-nav {
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
@@ -218,6 +197,7 @@ body {
     flex: 1;
 }
 
+
 /* ============================================================
    SECTION: BACK BUTTON
    ============================================================ */
@@ -236,6 +216,138 @@ body {
 .btn-back:hover {
     color: var(--color-text);
 }
+
+
+/* ============================================================
+   SECTION: SECTION TITLE
+   ============================================================ */
+.view-section-title {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   SECTION: PAST GAMES LIST
+   ============================================================ */
+#past-games-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.past-game-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: var(--space-md);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.past-game-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+}
+
+.past-game-card-main {
+    flex: 1;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.past-game-date {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+.past-game-scores {
+    display: flex;
+    gap: var(--space-xl);
+    align-items: baseline;
+    margin-top: var(--space-xs);
+}
+
+.past-game-player {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+.past-game-player strong {
+    font-size: var(--text-xl);
+    font-weight: 800;
+    color: var(--color-primary);
+}
+
+.btn-delete-game {
+    background: transparent;
+    border: none;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius);
+    flex-shrink: 0;
+    line-height: 1;
+    transition: color 0.15s, background 0.15s;
+}
+
+.btn-delete-game:hover {
+    color: var(--color-danger);
+    background: rgba(239, 68, 68, 0.08);
+}
+
+.past-games-danger-zone {
+    border-top: 1px solid var(--color-border);
+    padding-top: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.past-games-danger-zone h2 {
+    font-size: var(--text-sm);
+    color: var(--color-danger);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   SECTION: PAST GAME DETAIL
+   ============================================================ */
+.past-game-detail-date {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.past-game-history-title {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+}
+
+.past-game-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
 
 /* ============================================================
    SECTION: ROUND INFO BAR
@@ -363,7 +475,6 @@ body {
     gap: var(--space-sm);
 }
 
-/* Score result banner */
 .score-result {
     width: 100%;
     padding: var(--space-md);
@@ -430,8 +541,6 @@ body {
 /* ============================================================
    SECTION: BUTTONS
    ============================================================ */
-
-/* Primary action button */
 .btn-primary {
     background: var(--color-accent);
     color: #fff;
@@ -448,7 +557,6 @@ body {
 .btn-primary:hover  { opacity: 0.88; transform: translateY(-1px); }
 .btn-primary:active { transform: translateY(0); }
 
-/* Secondary / ghost button */
 .btn-secondary {
     background: transparent;
     color: var(--color-text-muted);
@@ -463,7 +571,6 @@ body {
 
 .btn-secondary:hover { background: var(--color-bg); }
 
-/* Danger button */
 .btn-danger {
     background: var(--color-danger);
     color: #fff;
@@ -478,7 +585,6 @@ body {
 
 .btn-danger:hover { opacity: 0.85; }
 
-/* New Round button */
 .btn-new-round {
     background: var(--color-primary);
     color: #fff;
@@ -495,7 +601,6 @@ body {
 
 .btn-new-round:hover { opacity: 0.85; }
 
-/* Score action buttons */
 .score-btn {
     flex: 1;
     border: none;
@@ -508,10 +613,9 @@ body {
     line-height: 1.3;
 }
 
-.score-btn:active { transform: scale(0.97); }
+.score-btn:active   { transform: scale(0.97); }
 .score-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
-/* CUSTOMIZE: Change button colours to match your theme */
 .btn-full { background: var(--color-success); color: #fff; }
 .btn-half { background: var(--color-warning); color: #fff; }
 
@@ -694,6 +798,7 @@ hr {
     font-weight: 600;
     text-align: center;
 }
+
 
 /* ============================================================
    SECTION: UTILITIES

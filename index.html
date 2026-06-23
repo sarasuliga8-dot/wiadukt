@@ -5,26 +5,20 @@
     <link rel="icon" type="image/png" href="icon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CUSTOMIZE: Change app title -->
-    <title>Wiadukt</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="app">
+    <di88v id="app">
 
         <!-- ======== HEADER ======== -->
         <header id="header">
-              <header class="title-bar">
-                <img src="wiadukt logo.png" alt="Website Logo" class="logo" width="100" height="100">
-                <h1 id="app-title">Wiadukt</h1>
-              </header>
-            <nav id="tab-nav">
-                <!-- Tab buttons — data-view must match a view section id below -->
-                <button class="tab-btn active" data-view="view-home">Home</button>
-                <button class="tab-btn" data-view="view-game">Game</button>
-                <button class="tab-btn" data-view="view-stats">Stats</button>
-                <button class="tab-btn" data-view="view-settings">Settings</button>
-            </nav>
+            <div class="title-bar">
+                <img src="wiadukt logo.png" alt="Website Logo" class="logo">
+                <div class="title-text">
+                    <h1 id="app-title">Wiadukt</h1>
+                    <p id="app-tagline">Train to bet better.</p>
+                </div>
+            </div>
         </header>
 
         <!-- ======== HOME VIEW ======== -->
@@ -33,21 +27,21 @@
                 <p id="home-subtitle">What would you like to do?</p>
             </div>
             <div id="home-nav">
-                <button class="home-nav-card" data-view="view-game">
+                <button class="home-nav-card" data-nav="view-play">
                     <span class="home-nav-icon">🎮</span>
                     <div>
-                        <span class="home-nav-label">Game</span>
-                        <span class="home-nav-desc">Draw sides and record scores</span>
+                        <span class="home-nav-label">Play</span>
+                        <span class="home-nav-desc">Start, continue or browse games</span>
                     </div>
                 </button>
-                <button class="home-nav-card" data-view="view-stats">
+                <button class="home-nav-card" data-nav="view-stats">
                     <span class="home-nav-icon">📊</span>
                     <div>
-                        <span class="home-nav-label">Stats</span>
+                        <span class="home-nav-label">Statistics</span>
                         <span class="home-nav-desc">View weekly, monthly and yearly scores</span>
                     </div>
                 </button>
-                <button class="home-nav-card" data-view="view-settings">
+                <button class="home-nav-card" data-nav="view-settings">
                     <span class="home-nav-icon">⚙️</span>
                     <div>
                         <span class="home-nav-label">Settings</span>
@@ -56,32 +50,54 @@
                 </button>
             </div>
         </main>
-        <!-- ======== END HOME VIEW ======== -->
 
+        <!-- ======== PLAY MENU VIEW ======== -->
+        <main id="view-play" class="view hidden">
+            <button class="btn-back" id="btn-back-play">&#8592; Back</button>
+            <div id="play-nav">
+                <button class="home-nav-card" id="btn-continue-game">
+                    <span class="home-nav-icon">▶️</span>
+                    <div>
+                        <span class="home-nav-label">Continue Game</span>
+                        <span class="home-nav-desc">Resume your current game</span>
+                    </div>
+                </button>
+                <button class="home-nav-card" id="btn-past-games-nav">
+                    <span class="home-nav-icon">📋</span>
+                    <div>
+                        <span class="home-nav-label">Past Games</span>
+                        <span class="home-nav-desc">Browse your completed games</span>
+                    </div>
+                </button>
+                <button class="home-nav-card" id="btn-new-game">
+                    <span class="home-nav-icon">✨</span>
+                    <div>
+                        <span class="home-nav-label">New Game</span>
+                        <span class="home-nav-desc">Archive the current game and start fresh</span>
+                    </div>
+                </button>
+            </div>
+        </main>
 
         <!-- ======== GAME VIEW ======== -->
         <main id="view-game" class="view hidden">
 
-            <button id="btn-back-home" class="btn-back">&#8592; Home</button>
+            <button id="btn-back-game" class="btn-back">&#8592; Back</button>
 
-            <!-- Round info bar -->
             <div id="round-info">
                 <span>Round <strong id="round-number">1</strong></span>
                 <span id="round-date"></span>
             </div>
 
             <!-- === PHASE 1: DRAW SIDES === -->
-            <!-- Shown before sides have been assigned this round -->
             <section id="phase-draw" class="phase">
                 <p id="drawer-prompt" class="drawer-prompt"></p>
                 <button id="btn-draw" class="btn-primary">Draw Sides</button>
             </section>
 
-            <!-- === PHASE 2: ACTIVE (sides assigned) === -->
-            <!-- Shown once sides have been drawn -->
+            <!-- === PHASE 2: ACTIVE === -->
             <section id="phase-active" class="phase hidden">
 
-                <!-- Player side assignment cards -->
                 <div id="sides-display">
                     <div class="player-side-card">
                         <div class="player-label" id="p0-name-display">Player 1</div>
@@ -94,8 +110,6 @@
                     </div>
                 </div>
 
-                <!-- === SCORING SECTION === -->
-                <!-- CUSTOMIZE: Adjust button labels to match your point rules -->
                 <div id="scoring-section">
                     <p class="scoring-label">When the train passes, record the result:</p>
 
@@ -104,12 +118,10 @@
                             <span id="score-p0-name">Player 1</span> won:
                         </div>
                         <div class="score-btns">
-                            <button class="score-btn btn-full"
-                                    data-player="0" data-points="1">
+                            <button class="score-btn btn-full" data-player="0" data-points="1">
                                 On Viaduct (+1 pt)
                             </button>
-                            <button class="score-btn btn-half"
-                                    data-player="0" data-points="0.5">
+                            <button class="score-btn btn-half" data-player="0" data-points="0.5">
                                 Near Viaduct (+0.5 pt)
                             </button>
                         </div>
@@ -120,12 +132,10 @@
                             <span id="score-p1-name">Player 2</span> won:
                         </div>
                         <div class="score-btns">
-                            <button class="score-btn btn-full"
-                                    data-player="1" data-points="1">
+                            <button class="score-btn btn-full" data-player="1" data-points="1">
                                 On Viaduct (+1 pt)
                             </button>
-                            <button class="score-btn btn-half"
-                                    data-player="1" data-points="0.5">
+                            <button class="score-btn btn-half" data-player="1" data-points="0.5">
                                 Near Viaduct (+0.5 pt)
                             </button>
                         </div>
@@ -135,43 +145,52 @@
                         No score this round
                     </button>
                 </div>
-                <!-- === END SCORING SECTION === -->
 
-                <!-- Result banner (hidden until scored) -->
                 <div id="score-result" class="score-result hidden"></div>
-
-                <!-- Running totals (shown after scoring) -->
                 <div id="current-totals"></div>
 
-                <!-- Shown when user tries to navigate away before submitting a result -->
                 <div id="nav-blocked-msg" class="nav-blocked-msg hidden">
                     Submit a result before leaving this page.
                 </div>
 
-                <!-- Manual round-end button -->
-                <button id="btn-new-round" class="btn-new-round">End of Game</button>
+                <button id="btn-new-round" class="btn-new-round">End Round</button>
 
             </section>
-            <!-- === END PHASE 2 === -->
 
         </main>
-        <!-- ======== END GAME VIEW ======== -->
 
+        <!-- ======== PAST GAMES VIEW ======== -->
+        <main id="view-past-games" class="view hidden">
+            <button class="btn-back" id="btn-back-past-games">&#8592; Back</button>
+            <p class="view-section-title">Past Games</p>
+            <div id="past-games-list"></div>
+            <div class="past-games-danger-zone">
+                <h2>Danger Zone</h2>
+                <p class="danger-desc">Permanently deletes all past games and resets the current game.</p>
+                <button id="btn-reset-all-games" class="btn-danger">Reset Everything</button>
+            </div>
+        </main>
+
+        <!-- ======== PAST GAME DETAIL VIEW ======== -->
+        <main id="view-past-game-detail" class="view hidden">
+            <button class="btn-back" id="btn-back-game-detail">&#8592; Back</button>
+            <div id="past-game-detail-content"></div>
+        </main>
 
         <!-- ======== STATS VIEW ======== -->
         <main id="view-stats" class="view hidden">
+            <button class="btn-back" id="btn-back-stats">&#8592; Back</button>
             <div id="stats-controls">
                 <button class="period-btn active" data-period="weekly">Weekly</button>
                 <button class="period-btn" data-period="monthly">Monthly</button>
                 <button class="period-btn" data-period="yearly">Yearly</button>
             </div>
-            <!-- Populated dynamically by renderStats() -->
             <div id="stats-display"></div>
         </main>
 
-
         <!-- ======== SETTINGS VIEW ======== -->
         <main id="view-settings" class="view hidden">
+            <button class="btn-back" id="btn-back-settings">&#8592; Back</button>
 
             <section class="settings-section">
                 <h2>Player Names</h2>
@@ -197,7 +216,6 @@
                 </div>
             </section>
 
-            <!-- CUSTOMIZE: Rename the two sides (default: Left / Right) -->
             <section class="settings-section">
                 <h2>Side Names</h2>
                 <div class="settings-field">
@@ -224,10 +242,9 @@
             </div>
 
         </main>
-        <!-- ======== END SETTINGS VIEW ======== -->
 
-    </div><!-- #app -->
-
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js"></script>
 </body>
 </html>
